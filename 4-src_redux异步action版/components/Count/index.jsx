@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
-// import store from '../../redux/store';
-// import {increment,decrement,incrementAsync} from '../../redux/count_action';
+import store from '../../redux/store';
+import {increment,decrement,incrementAsync} from '../../redux/count_action';
 
 class Count extends Component {
 
@@ -17,20 +17,20 @@ class Count extends Component {
 
   increment = () => {
     const {value} = this.selectNum;
-    // store.dispatch(increment(value*1));
+    store.dispatch(increment(value*1));
   };
 
   decrement = () => {
     const {value} = this.selectNum;
-    // store.dispatch(decrement(value*1));
+    store.dispatch(decrement(value*1));
   };
 
   incrementIfOdd = () => {
-    // const count = store.getState();
+    const count = store.getState();
     const {value} = this.selectNum;
-    // if (count % 2 === 1){
-    //   store.dispatch(increment(value*1));
-    // }
+    if (count % 2 === 1){
+      store.dispatch(increment(value*1));
+    }
   };
 
   incrementAsync = () => {
@@ -38,13 +38,13 @@ class Count extends Component {
     // setTimeout(() => {
     //   store.dispatch(increment(value*1));
     // },1000);
-    // store.dispatch(incrementAsync(value*1,1000));
+    store.dispatch(incrementAsync(value*1,1000));
   };
   
   render() {
     return (
         <div>
-          <h2>当前计数为：？？？？</h2>
+          <h2>当前计数为：{store.getState()}</h2>
           <select ref={c => {this.selectNum = c}}>
             <option value="1">1</option>
             <option value="2">2</option>
