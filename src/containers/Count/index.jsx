@@ -10,17 +10,14 @@ import {
   incrementAsync
 } from '../../redux/count_action';
 
-// 映射状态
-function mapStateToProps(state) {
-  return {count: state}
-}
-// 映射操作状态的方法
-function mapDispatchToProps(dispatch) {
-  return {
-    increment: data => dispatch(increment(data)),
-    decrement: data => dispatch(decrement(data)),
-    incrementAsync: (data,time) => dispatch(incrementAsync(data,time))
-  }
-}
 // 使用connect()()创建并暴露一个Count的容器组件
-export default connect(mapStateToProps,mapDispatchToProps)(CountUI);
+export default connect(
+    // 映射状态
+    state => ({count: state}),
+    // 映射操作状态的方法，可以是一个对象（简写）
+    {
+      increment,
+      decrement,
+      incrementAsync
+    }
+)(CountUI);
