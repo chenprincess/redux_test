@@ -10,11 +10,11 @@ import {
   incrementAsync
 } from '../../redux/count_action';
 
-// 映射状态
+// mapStateToProps函数返回的对象作为传递给UI组件的props——状态
 function mapStateToProps(state) {
   return {count: state}
 }
-// 映射操作状态的方法
+// mapDispatchToProps函数返回的对象作为传递给UI组件的props——操作状态的方法
 function mapDispatchToProps(dispatch) {
   return {
     increment: data => dispatch(increment(data)),
