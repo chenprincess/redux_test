@@ -1,7 +1,16 @@
+// 引入Count的UI组件
 import React, {Component} from 'react';
-// import store from '../../redux/store';
-// import {increment,decrement,incrementAsync} from '../../redux/count_action';
 
+// 引入connect用于连接UI组件与redux
+import {connect} from 'react-redux';
+
+import {
+  increment,
+  decrement,
+  incrementAsync
+} from '../../redux/count_action';
+
+// 定义UI组件
 class Count extends Component {
 
   state = {
@@ -29,7 +38,7 @@ class Count extends Component {
     const {value} = this.selectNum;
     this.props.incrementAsync(value*1,1000);
   };
-  
+
   render() {
     // console.log(this.props);
     return (
@@ -49,4 +58,14 @@ class Count extends Component {
   }
 }
 
-export default Count;
+// 使用connect()()创建并暴露一个Count的容器组件
+export default connect(
+    // 映射状态
+    state => ({count: state}),
+    // 映射操作状态的方法，可以是一个对象（简写）
+    {
+      increment,
+      decrement,
+      incrementAsync
+    }
+)(Count);
