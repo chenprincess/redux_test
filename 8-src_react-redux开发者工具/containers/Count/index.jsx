@@ -29,7 +29,7 @@ class Count extends Component {
   render() {
     return (
         <div>
-          <h2>当前求和为：{this.props.count}，下面组件的人数为{this.props.personCount}</h2>
+          <h2>当前求和为：{this.props.count}，下面组件的人数为{this.props.person.length}</h2>
           <select ref={c => this.selectNum = c}>
             <option value="1">1</option>
             <option value="2">2</option>
@@ -47,7 +47,7 @@ class Count extends Component {
 export default connect(
     state => ({
       count: state.count,
-      personCount: state.person.length
+      person: state.person
     }),
     {
       increment,
